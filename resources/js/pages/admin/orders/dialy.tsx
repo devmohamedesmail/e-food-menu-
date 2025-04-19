@@ -11,6 +11,7 @@ import { MdEdit } from "react-icons/md";
 import { Phone } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -23,13 +24,13 @@ const breadcrumbs: BreadcrumbItem[] = [
 const getOrderId = (order: any) => order?.id;
 
 export default function DialyOrders({ orders }: any) {
-
+    const { t } = useTranslation()
     const [latestOrderId, setLatestOrderId] = useState(3);
 
     useEffect(() => {
-        setInterval(()=>{
+        setInterval(() => {
             get_last_order()
-        },5000)
+        }, 5000)
 
     }, [latestOrderId]);
 
@@ -38,9 +39,9 @@ export default function DialyOrders({ orders }: any) {
     const get_last_order = async () => {
         const response = await axios.get('/last/order')
         setLatestOrderId(response.data.id)
-        if(response.data.id !== latestOrderId){
-           console.log("id",latestOrderId)
-           console.log("id res",response.data.id)
+        if (response.data.id !== latestOrderId) {
+            console.log("id", latestOrderId)
+            console.log("id res", response.data.id)
         }
     }
 
@@ -61,6 +62,7 @@ export default function DialyOrders({ orders }: any) {
                                 <th className='text-black'>Order</th>
                                 <th className='text-black'>Total</th>
                                 <th className='text-black'>Status</th>
+
                                 <th className='text-black'>Actions</th>
                             </tr>
                         </thead>
@@ -73,25 +75,48 @@ export default function DialyOrders({ orders }: any) {
                                     <tr key={order.id} className='border'>
 
                                         <td >
+                                            {
+                                                order.table ? (
+                                                    <p className='w-8 h-8 bg-primary flex justify-center items-center rounded-full'>{order.table}</p>
+                                                ) : (
+                                                    <div>
+                                                        <p>{order.address}</p>
+                                                        <p>{order.phone}</p>
+                                                        <p>{order.name}</p>
+                                                    </div>)
+                                            }
 
-                                            <p className='w-8 h-8 bg-primary flex justify-center items-center rounded-full'>{order.table}</p>
+
                                         </td>
                                         <td>
                                             {items.map((item: any, index: number) => (
-                                                <div key={index} className='flex justify-between'>
+                                                <div key={index} className='flex justify-between items-center'>
 
-                                                    <div>
+                                                    <div className='flex items-center'>
                                                         <img className='w-16 h-16 rounded-full' src={`/uploads/${item.image}`} alt={item.name_ar} />
-                                                        <p>{item.name_ar}</p>
+                                                        <p className='px-2'>{item.name_ar}</p>
                                                     </div>
                                                     <p className='font-bold bg-primary w-5 h-5 flex justify-center items-center rounded-2xl'>{item.quantity}</p>
                                                 </div>
                                             ))}
                                         </td>
                                         <td>{order.total}</td>
-                                        <td>{order.status}</td>
+                                        <td>{order.status == 1 ? t('order-preparing') : ''}</td>
+
                                         <th>
-                                            <button className="btn btn-ghost btn-xs">details</button>
+
+                                            {order.status !== 2 && order.status !== 1 ? (
+                                                <Link href={route('order.preparing', order.id)} className='btn btn-success text-white mx-1'>
+                                                    {t('preparing')}
+                                                </Link>
+                                            ) : ''}
+
+
+
+
+                                            <Link href={route('order.done', order.id)} className='btn btn-success text-white mx-1'>
+                                                {t('done')}
+                                            </Link>
                                         </th>
                                     </tr>
                                 );

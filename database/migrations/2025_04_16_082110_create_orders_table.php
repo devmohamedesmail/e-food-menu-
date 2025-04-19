@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('table')->nullable();
-            $table->string('status')->default('pending');
+            $table->integer('status')->default(0)->nullable();
             $table->string('total')->nullable();
             $table->json('order')->nullable();
             $table->longText('name')->nullable();

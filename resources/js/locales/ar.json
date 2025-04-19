@@ -50,5 +50,12 @@
   "update": "تحديث",
   "save":" حفظ ",
   "added-to-cart": "تمت الإضافة إلى السلة",
-  "food-menu": "قائمة الطعام"
+  "food-menu": "قائمة الطعام",
+  "preparing":" جاري التحضير",
+  "delivered":" تم التوصيل",
+  "done":" تم الانتهاء ",
+  "cancel":" الغاء ",
+  "order-preparing":"  جاري التحضير الطلب ",
+  "order-delivered":" تم التوصيل للطلب",
+  "order-cancelled":" تم الغاء الطلب"
 }

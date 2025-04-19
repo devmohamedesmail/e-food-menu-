@@ -49,6 +49,8 @@ Route::controller(Order_controller::class)->group(function(){
     Route::get('/admin/orders', 'all_orders')->name('orders.page');
     Route::get('/admin/dialy/orders', 'daily_orders')->name('dialy.orders');
     Route::get('/last/order/','get_last_order')->name('last.order');
+    Route::get('/order/preparing/{id}','change_order_status_to_preparing')->name('order.preparing');
+    Route::get('/order/done/{id}','change_order_status_to_done')->name('order.done');
 });
 
 

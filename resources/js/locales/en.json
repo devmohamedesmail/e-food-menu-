@@ -50,5 +50,12 @@
   "update": "Update",
   "save":"Save",
   "added-to-cart":"Added To cart",
-  "food-menu":"Food Menu"
+  "food-menu":"Food Menu",
+  "preparing":"Preparing",
+  "delivered":"Delivered",
+  "done":"Done",
+  "cancel":"Cancel",
+  "order-preparing":"Order is preparing",
+  "order-delivered":"Order is delivered",
+  "order-cancelled":"Order is cancelled"
 }
