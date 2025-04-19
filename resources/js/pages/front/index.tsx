@@ -1,12 +1,9 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next';
-
 import { useDispatch } from 'react-redux'
 import { add_to_cart } from '@/reducers/cartSlice';
-
 import { Head, usePage } from '@inertiajs/react';
 import Header from '@/components/Header';
-import { useSelector } from 'react-redux';
 import MealItem from '@/components/custom/MealItem';
 import CategoryItem from '@/components/custom/CategoryItem';
 import FloatCart from '@/components/FloatCart';
@@ -95,7 +92,7 @@ function index({ categories, meals, table }: Props) {
 
             <div className='container m-auto px-5'>
                 <div className='flex justify-between items-center my-10'>
-                    <h6 className='text-white font-bold '>{t('categories')}</h6>
+                    <h6 className={`text-white block  w-full font-bold ${i18n.language === 'ar' ? 'text-right' : ''} `}>{t('categories')}</h6>
                 </div>
                 <div className="grid grid-cols-3 md:grid-cols-5 gap-4">
 
@@ -113,7 +110,7 @@ function index({ categories, meals, table }: Props) {
             {/* meals section */}
             <div className='container m-auto px-5 mb-20'>
                 <div className='flex justify-between items-center my-10'>
-                    <h6 className='text-white font-bold '>{t('meals')}</h6>
+                    <h6 className={`text-white block  w-full font-bold ${i18n.language === 'ar' ? 'text-right' : ''} `}>{t('meals')}</h6>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                     {meals && meals.map((meal: any) => (
@@ -135,8 +132,8 @@ function index({ categories, meals, table }: Props) {
             </div>
 
             {showToast && (
-                <div className="toast toast-top toast-end z-50">
-                    <div className="alert alert-success bg-primary">
+                <div className="toast toast-top toast-center z-50">
+                    <div className="alert alert-success bg-primary px-10">
                         <span className='text-white'>{t('added-to-cart')}</span>
                     </div>
                 </div>

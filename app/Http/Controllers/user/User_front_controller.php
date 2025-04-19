@@ -48,14 +48,16 @@ class User_front_controller extends Controller
 
 
     // checkout_page
-    public function checkout_page(){
+    public function checkout_page()
+    {
         return Inertia::render('front/checkout');
     }
 
 
 
     // category_meals
-    public function category_meals($id){
+    public function category_meals($id)
+    {
         $category = Category::with('meals')->findOrFail($id);
         return Inertia::render('front/cmeals', ['category' => $category]);
     }
@@ -71,7 +73,9 @@ class User_front_controller extends Controller
             if ($user->role === 'admin') {
                 return Inertia::render('dashboard');
             } else {
-                return Inertia::render('front/index');
+                $categories = Category::all();
+                $meals = Meal::all();
+                return Inertia::render("front/index", ["categories" => $categories, "meals" => $meals]);
             }
         }
 
@@ -84,11 +88,12 @@ class User_front_controller extends Controller
 
 
     // send_feedback
-    public function send_feedback(Request $request){
+    public function send_feedback(Request $request)
+    {
         $request->validate([
             'rating' => 'required|integer|min:1|max:5',
         ]);
-    
+
         Feedback::create([
             'rating' => $request->rating,
         ]);
@@ -97,11 +102,9 @@ class User_front_controller extends Controller
     }
 
 
-    public function show_menu(){
+    public function show_menu()
+    {
         $menu = Category::with('meals')->get();
-        return Inertia::render('front/menu', ['menu'=> $menu]);
+        return Inertia::render('front/menu', ['menu' => $menu]);
     }
-
-
-
 }

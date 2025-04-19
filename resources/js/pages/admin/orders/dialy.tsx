@@ -1,14 +1,9 @@
 
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
-import { Head, Link, useForm } from '@inertiajs/react';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import InputError from '@/components/input-error';
-import { Button } from '@/components/ui/button';
-import { FaTrash } from "react-icons/fa";
-import { MdEdit } from "react-icons/md";
-import { Phone } from 'lucide-react';
+import { Head, Link } from '@inertiajs/react';
+
+
 import { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
