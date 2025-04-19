@@ -50,23 +50,23 @@ function ShowMenu({ menu }: any) {
             <Head title='Menu' />
             <Header />
 
-            <h5 className='text-primary text-center font-bold'>{t('food-menu')}</h5>
+            <h5 className='text-primary text-center font-bold my-10'>{t('food-menu')}</h5>
             <div className="container m-auto px-3">
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
 
                     {menu && menu.map((category: any) => (
                         <div className='grid-item' key={category.id}>
-                            <div className='bg-primary flex items-center'>
-                                <img src={`/uploads/${category.image}`} className='w-18 h-18' alt={category.name_en} />
+                            <div className='flex items-center'>
 
-                                <h6 className='mx-3'>{i18n.language === 'ar' ? category.name_ar : category.name_en}</h6>
+                                <img src={`/uploads/${category.image}`} className='w-18 h-18' alt={category.name_en} />
+                                <h6 className='mx-3 flex-1 text-right text-white'>{i18n.language === 'ar' ? category.name_ar : category.name_en}</h6>
                             </div>
 
                             {category && category.meals.map((meal: any) => (
                                 <div className='bg-gray-900 my-1 flex items-center p-1 py-2'>
-                                    {/* <img className='w-10 h-10 rounded-full' src={`/uploads/${meal.image}`} alt={meal.name_ar} /> */}
-                                    <div className='mx-2 flex-1'>
+                                   
+                                    <div className='mx-2 flex-1 flex justify-between'>
                                         <p className='text-white text-sm'>{i18n.language === 'ar' ? meal.name_ar : meal.name_en}</p>
 
                                         <div className='flex items-center'>
@@ -75,7 +75,7 @@ function ShowMenu({ menu }: any) {
                                         </div>
                                     </div>
                                     <div>
-                                        <button onClick={() => handleAddToCart(meal)} className='bg-primary p-2 rounded-md'><FaPlus /></button>
+                                        <button onClick={() => handleAddToCart(meal)} className='bg-primary p-2 rounded-md'><FaPlus color='white' size={15} /></button>
                                     </div>
                                 </div>
                             ))}

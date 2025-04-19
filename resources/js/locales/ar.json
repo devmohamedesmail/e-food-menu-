@@ -57,5 +57,19 @@
   "cancel":" الغاء ",
   "order-preparing":"  جاري التحضير الطلب ",
   "order-delivered":" تم التوصيل للطلب",
-  "order-cancelled":" تم الغاء الطلب"
+  "order-cancelled":" تم الغاء الطلب",
+  "email": "البريد الإلكتروني",
+  "password": "كلمة المرور",
+  "login": "تسجيل الدخول",
+  "register": "التسجيل",
+  "name": "الاسم",
+  "forgot-password": "هل نسيت كلمة المرور؟",
+  "remember": "تذكرني",
+  "reset-password": "إعادة تعيين كلمة المرور",
+  "send-password-reset-link": "إرسال رابط إعادة تعيين كلمة المرور",
+  "no-account": "ليس لديك حساب؟",
+  "sign-up": "إنشاء حساب",
+  "confirm-password": "تأكيد كلمة المرور",
+  "create-account": "إنشاء حساب",
+  "already-account": "هل لديك حساب بالفعل؟"
 }

@@ -7,14 +7,14 @@ import { IoStar } from 'react-icons/io5';
 import { IoMdClose } from 'react-icons/io';
 import { GiFoodTruck } from "react-icons/gi";
 import { MdOutlineRestaurantMenu } from "react-icons/md";
+import { useSelector } from 'react-redux';
 
 
 function BottomNav() {
     const { t } = useTranslation();
     const modalRef = useRef<HTMLDialogElement>(null);
-
     const [showToast, setShowToast] = useState(false);
-
+    const cart = useSelector((state: any) => state.cart.meals);
     const { data, setData, post, processing, errors, reset } = useForm({
         rating: '',
     });
@@ -43,6 +43,10 @@ function BottomNav() {
         modalRef.current?.showModal();
     };
 
+
+    const total = cart.reduce((acc: number, item: any) => {
+        return acc + item.price * item.quantity;
+    }, 0);
     return (
         <>
             {/* Modal */}
@@ -105,7 +109,8 @@ function BottomNav() {
                     <span className="dock-label text-primary">{t('rate-us')}</span>
                 </button>
 
-                <Link href="/">
+                <Link href="/" className='relative'>
+                    <span className='absolute -top-2 right-10 bg-primary rounded-full w-5 h-5 flex items-center justify-center'>{cart && cart.length}</span>
                     <IoBagHandle size={25} className="text-primary" />
                     <span className="dock-label text-primary">{t('cart')}</span>
                 </Link>

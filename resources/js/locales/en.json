@@ -57,5 +57,21 @@
   "cancel":"Cancel",
   "order-preparing":"Order is preparing",
   "order-delivered":"Order is delivered",
-  "order-cancelled":"Order is cancelled"
+  "order-cancelled":"Order is cancelled",
+  "email": "Email",
+  "password": "Password",
+  "login": "Login",
+  "register": "Register",
+  "name": "Name",
+  "forgot-password": "Forgot Password ? ",
+  "remember": "Remember me",
+  "reset-password": "Reset Password",
+  "send-password-reset-link": "Send Password Reset Link",
+  "no-account":"Don't have an account ?",
+  "sign-up":"Sign Up",
+  "confirm-password": "Confirm Password",
+  "create-account": "Create Account",
+  "already-account": "Already have an account ?"
+
+
 }
