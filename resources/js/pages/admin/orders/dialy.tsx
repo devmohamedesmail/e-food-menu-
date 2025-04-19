@@ -1,0 +1,112 @@
+
+import AppLayout from '@/layouts/app-layout';
+import { type BreadcrumbItem } from '@/types';
+import { Head, Link, useForm } from '@inertiajs/react';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import InputError from '@/components/input-error';
+import { Button } from '@/components/ui/button';
+import { FaTrash } from "react-icons/fa";
+import { MdEdit } from "react-icons/md";
+import { Phone } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import axios from 'axios';
+
+
+const breadcrumbs: BreadcrumbItem[] = [
+    {
+        title: 'Daily orders',
+        href: '/dashboard',
+    },
+];
+
+const getOrderId = (order: any) => order?.id;
+
+export default function DialyOrders({ orders }: any) {
+
+    const [latestOrderId, setLatestOrderId] = useState(3);
+
+    useEffect(() => {
+        setInterval(()=>{
+            get_last_order()
+        },5000)
+
+    }, [latestOrderId]);
+
+
+
+    const get_last_order = async () => {
+        const response = await axios.get('/last/order')
+        setLatestOrderId(response.data.id)
+        if(response.data.id !== latestOrderId){
+           console.log("id",latestOrderId)
+           console.log("id res",response.data.id)
+        }
+    }
+
+
+
+
+    return (
+        <AppLayout breadcrumbs={breadcrumbs}>
+            <Head title="Categories" />
+            <div className='px-5'>
+                <div className="overflow-x-auto">
+                    <table className="table">
+
+                        <thead>
+                            <tr className='bg-primary'>
+
+                                <th className='text-black'>Table No</th>
+                                <th className='text-black'>Order</th>
+                                <th className='text-black'>Total</th>
+                                <th className='text-black'>Status</th>
+                                <th className='text-black'>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {orders && orders.map((order: any) => {
+                                const items = JSON.parse(order.order); // هنا نحول الستركنج إلى مصفوفة
+
+                                return (
+                                    <tr key={order.id} className='border'>
+
+                                        <td >
+
+                                            <p className='w-8 h-8 bg-primary flex justify-center items-center rounded-full'>{order.table}</p>
+                                        </td>
+                                        <td>
+                                            {items.map((item: any, index: number) => (
+                                                <div key={index} className='flex justify-between'>
+
+                                                    <div>
+                                                        <img className='w-16 h-16 rounded-full' src={`/uploads/${item.image}`} alt={item.name_ar} />
+                                                        <p>{item.name_ar}</p>
+                                                    </div>
+                                                    <p className='font-bold bg-primary w-5 h-5 flex justify-center items-center rounded-2xl'>{item.quantity}</p>
+                                                </div>
+                                            ))}
+                                        </td>
+                                        <td>{order.total}</td>
+                                        <td>{order.status}</td>
+                                        <th>
+                                            <button className="btn btn-ghost btn-xs">details</button>
+                                        </th>
+                                    </tr>
+                                );
+                            })}
+
+
+
+
+
+                        </tbody>
+
+
+                    </table>
+                </div>
+            </div>
+        </AppLayout>
+    );
+}
