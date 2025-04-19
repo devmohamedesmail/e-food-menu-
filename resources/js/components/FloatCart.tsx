@@ -89,7 +89,8 @@ function FloatCart({ table }: Props) {
                                             <div className='text-primary flex'>
 
                                                 <p className='mx-1'> {item.price}</p>
-                                                <p className='mx-1'>{i18n.language === 'ar' ? app_settings.currency_ar : app_settings.currency_en}</p>
+                                                {app_settings ?  <p className='mx-1'>{i18n.language === 'ar' ? app_settings.currency_ar : app_settings.currency_en}</p> : ''}
+                                               
 
                                             </div>
                                             <div className='flex mt-2 '>

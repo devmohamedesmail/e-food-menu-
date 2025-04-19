@@ -13,9 +13,11 @@ function Header() {
                 <input id="my-drawer" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex items-center justify-between container mx-auto py-1 px-3">
                     <div>
-                        <img className='w-18 h-18' src={`/uploads/${app_settings.logo}`} alt={app_settings.title_ar} />
+                        {app_settings && app_settings.logo ? <img className='w-18 h-18' src={`/uploads/${app_settings.logo}`} alt={app_settings.title_ar} /> :''}
+                        
                     </div>
-                    <h6 className='text-primary font-extrabold text-xl'>{i18n.language === 'ar' ? app_settings.title_ar : app_settings.title_en}</h6>
+                    {app_settings ?  <h6 className='text-primary font-extrabold text-xl'>{i18n.language === 'ar' ? app_settings.title_ar : app_settings.title_en}</h6> : '' }
+                   
                     <label htmlFor="my-drawer" className="btn btn-primary drawer-button">
                         <FaBars />
                     </label>
