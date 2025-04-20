@@ -12,6 +12,7 @@ import { useState } from 'react';
 import { CiImageOn } from "react-icons/ci";
 import { useTranslation } from 'react-i18next';
 
+
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Categories',
@@ -22,7 +23,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 
 export default function Meals({ categories, meals }: any) {
-    const { t } = useTranslation();
+    const { t,i18n } = useTranslation();
     const [imagePreview, setImagePreview] = useState<string | null>(null);
     const { data, setData, post, processing, errors, reset } = useForm({
         categoryId: '',
@@ -32,6 +33,7 @@ export default function Meals({ categories, meals }: any) {
         description_ar: '',
         price: '',
         image: '',
+        setImagePreview: null,
     });
 
     const add_meal = (e: any) => {
@@ -76,9 +78,11 @@ export default function Meals({ categories, meals }: any) {
                                 onChange={(e) => setData('categoryId', e.target.value)}
                                 className="select select-primary w-full bg-transparent border focus:outline-0 rounded"
                             >
-                                <option value="0" disabled>{t('select-category')} </option>
+                                <option value="0" >{t('select-category')} </option>
                                 {categories && categories.map((category: any) => (
-                                    <option key={category.id} value={category.id}>{category.name_en}</option>
+                                    <option key={category.id} value={category.id}>
+                                        {i18n.language === 'ar' ? category.name_ar : category.name_en}
+                                    </option>
                                 ))}
                             </select>
                         </div>

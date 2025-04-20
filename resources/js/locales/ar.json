@@ -71,5 +71,7 @@
   "sign-up": "إنشاء حساب",
   "confirm-password": "تأكيد كلمة المرور",
   "create-account": "إنشاء حساب",
-  "already-account": "هل لديك حساب بالفعل؟"
+  "already-account": "هل لديك حساب بالفعل؟",
+   "currency-en": "العملة بالإنجليزية",
+  "currency-ar": "العملة بالعربية"
 }

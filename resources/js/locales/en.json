@@ -71,7 +71,9 @@
   "sign-up":"Sign Up",
   "confirm-password": "Confirm Password",
   "create-account": "Create Account",
-  "already-account": "Already have an account ?"
+  "already-account": "Already have an account ?",
+  "currency-en": "Currency English",
+  "currency-ar": "Currency Arabic"
 
 
 }
