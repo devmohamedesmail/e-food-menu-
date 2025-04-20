@@ -17,9 +17,15 @@ class Order_controller extends Controller
 
 
     // daily_orders
-    public function daily_orders(Request $request){
+    public function daily_orders(Request $request){     
+        return Inertia::render('admin/orders/dialy',);
+     
+    }
+
+
+    public function fetch_daily_orders(){
         $orders = Order::whereDate('created_at', Carbon::today())->whereIn('status', [0, 1])->get();
-        return Inertia::render('admin/orders/dialy',['orders'=>$orders]);
+        return response()->json($orders);
     }
 
 

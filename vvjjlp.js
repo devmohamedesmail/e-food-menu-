@@ -18,31 +18,55 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 const getOrderId = (order: any) => order?.id;
 
-export default function DialyOrders() {
+export default function DialyOrders({ orders }: any) {
     const { t } = useTranslation()
-    const [orders,setOrders] = useState([])
-
-
-   
- const fetchDailyOrders = async () => {
-    try {
-        const response = await axios.get('/fetch/dialy/orders');
-        setOrders(response.data);
-    } catch (error) {
-        console.error('Error fetching daily orders:', error);
-    }
- }
-
- useEffect(() => {
-    setInterval(fetchDailyOrders, 5000);
+    const [latestOrderId, setLatestOrderId] = useState(() => {
+        const storedId = localStorage.getItem('latestOrderId')
+        return storedId ? parseInt(storedId) : 3
+      })
     
- },[])
 
+    useEffect(() => {
+        setInterval(() => {
+            get_last_order()
+        }, 5000)
 
-   
+    }, [latestOrderId]);
+    const audioRef = useRef<HTMLAudioElement | null>(null)
 
+    useEffect(() => {
+      audioRef.current = new Audio('/notification.mp3') // تأكد إن الملف موجود في public
+    }, [])
+  
+    const playSound = () => {
+      if (audioRef.current) {
+        audioRef.current.play().catch((e) => {
+          console.warn('لم يتم تشغيل الصوت بسبب عدم وجود تفاعل من المستخدم بعد:', e)
+        })
+      }
+    }
 
+    const get_last_order = async () => {
+        const response = await axios.get('/last/order')
+        const lastOrderId = response.data.id
 
+        if (response.data.id !== latestOrderId) {
+           
+            setLatestOrderId(lastOrderId)
+            playSound()
+            console.log("order id", latestOrderId, "last order id", lastOrderId)
+           
+        }
+    }
+console.log("order id", latestOrderId)
+    useEffect(() => {
+        localStorage.setItem('latestOrderId', latestOrderId.toString())
+      }, [latestOrderId])
+
+      const handleUserClick = () => {
+        get_last_order()
+        setInterval(get_last_order, 10000) // كل 10 ثواني
+      }
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
