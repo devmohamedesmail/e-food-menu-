@@ -73,7 +73,9 @@
   "create-account": "Create Account",
   "already-account": "Already have an account ?",
   "currency-en": "Currency English",
-  "currency-ar": "Currency Arabic"
+  "currency-ar": "Currency Arabic",
+  "address": "Address",
+  "phone": "Phone"
 
 
 }

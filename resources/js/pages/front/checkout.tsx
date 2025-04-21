@@ -43,7 +43,6 @@ type Props = {
 
 function index({ categories, meals, table }: Props) {
     const { t, i18n } = useTranslation()
-
     const dispatch = useDispatch()
     const { app_settings }: any = usePage().props;
     const cart = useSelector((state: any) => state.cart.meals);
@@ -102,7 +101,7 @@ function index({ categories, meals, table }: Props) {
             <Head title='Home' />
             <Header />
 
-            <div className="container mx-auto py-3 px-3">
+            <div className="container mx-auto py-3 pb-50 px-3">
                 <h6 className='text-white text-center font-extrabold text-xl mb-20'>
                     {t('checkout')}
                 </h6>
@@ -112,9 +111,9 @@ function index({ categories, meals, table }: Props) {
                         <div>
 
                             <h4 className='text-white text-center mb-5 font-bold'>{t('delivery-info')}</h4>
-                            <CustomInput required label="Name" type="text" onChange={(e: any) => setData('name', e.target.value)} />
-                            <CustomInput required label="Address" type="text" onChange={(e: any) => setData('address', e.target.value)} />
-                            <CustomInput required label="Phone" type="text" onChange={(e: any) => setData('phone', e.target.value)} />
+                            <CustomInput required label={t('name')} type="text" onChange={(e: any) => setData('name', e.target.value)} />
+                            <CustomInput required label={t('address')} type="text" onChange={(e: any) => setData('address', e.target.value)} />
+                            <CustomInput required label={t('phone')} type="text" onChange={(e: any) => setData('phone', e.target.value)} />
 
                         </div>
                         <div>
