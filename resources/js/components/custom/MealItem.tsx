@@ -10,11 +10,11 @@ function MealItem({ image, title, description, price,currency, increaseQuantity,
                 <img src={image} alt="" />
             </div>
             <div>
-                <h5 className='text-center  font-bold text-white arabic-font'>{title}</h5>
+                <h5 className='text-center text-sm  font-bold text-white arabic-font'>{title}</h5>
                 <h5 className='text-center mt-3 text-white text-sm '>{description}</h5>
                 <h5 className='text-center  font-bold text-primary mt-3'>{price} {currency}</h5>
             </div>
-            <div className='flex justify-between items-center  w-full px-4 mt-5'>
+            <div className='flex justify-between items-center  w-full px-3 mt-5'>
                 <div className='flex '>
                     <button
                         onClick={increaseQuantity}
@@ -23,7 +23,7 @@ function MealItem({ image, title, description, price,currency, increaseQuantity,
                         <FaPlus />
                     </button>
 
-                    <input type="text" readOnly value={quantity} className='w-10 text-white text-center' />
+                    <input type="text" readOnly value={quantity} className='w-6 text-white text-center' />
 
                     <button
                         onClick={decreaseQuantity}

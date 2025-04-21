@@ -4,6 +4,7 @@ use App\Http\Controllers\admin\Category_controller;
 use App\Http\Controllers\admin\Meal_controller;
 use App\Http\Controllers\admin\Order_controller;
 use App\Http\Controllers\admin\Setting_controller;
+use App\Http\Controllers\admin\Users_controller;
 use App\Http\Controllers\user\User_front_controller;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
@@ -53,6 +54,17 @@ Route::controller(Order_controller::class)->group(function(){
     Route::get('/order/preparing/{id}','change_order_status_to_preparing')->name('order.preparing');
     Route::get('/order/done/{id}','change_order_status_to_done')->name('order.done');
 });
+
+Route::controller(Users_controller::class)->group(function(){
+    Route::get('/admin/users', 'show_users')->name('users.page');
+    Route::get('/admin/users/change/role/{id}', 'admin_users_change_role')->name('admin.users.change.role');
+    
+});
+
+
+
+
+
 
 
 

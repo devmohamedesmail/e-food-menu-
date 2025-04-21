@@ -45,6 +45,11 @@ export function AppSidebar() {
             href: '/admin/settings',
             icon: CircleDashed,
         },
+        {
+            title: t('users'),
+            href: '/admin/users',
+            icon: CircleDashed,
+        },
     ];
     
     const footerNavItems: NavItem[] = [
